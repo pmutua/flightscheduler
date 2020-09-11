@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="col-lg-8">
+    <h3 *ngIf="success" class="text-success">Successfully created!</h3>
+    <small id="required-input">*All Fields are required</small>
+
+    <div class="row well center">
+      <form (ngSubmit)="onSubmit()">
+        <div class="col-sm-12">
+          <div class="row" *ngIf="flight">
+            <div class="col-sm-6 form-group">
+              <label for="">Airline</label>
+              <input
+                name="airline"
+                [(ngModel)]="flight.airline"
+                type="text"
+                class="form-control"
+                id="airline"
+              />
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="">Flight No.</label>
+              <input
+                name="flight_no"
+                [(ngModel)]="flight.flight_no"
+                type="text"
+                class="form-control"
+                id="flightno"
+              />
+            </div>
+            <div class="col-sm-12 form-group">
+              <label for="">Trip type</label>
+              <div class="radio" *ngIf="flight">
+                <ng-container
+                  *ngFor="let trip_type of trip_types; let i = index"
+                >
+                  <label for="radios-{{ i }}" style="margin-right: 20px;">
+                    <input
+                      (change)="flight.trip_type = trip_type"
+                      type="radio"
+                      [value]="trip_type"
+                      name="trip_type"
+                      id="radios-{{ i }}"
+                    />{{ trip_type }}
+                  </label>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="">Departure Airport</label>
+              <input
+                type="text"
+                class="form-control"
+                name="departure_airport"
+                [(ngModel)]="flight.departure_airport"
+              />
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="">Arrival Airport</label>
+              <input
+                type="text"
+                class="form-control"
+                name="arrival_airport"
+                [(ngModel)]="flight.arrival_airport"
+              />
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="">Departure Date</label>
+              <input
+                type="date"
+                class="form-control"
+                name="departure_date"
+                [(ngModel)]="flight.departure_date"
+              />
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="">Arrival Date</label>
+              <input
+                type="date"
+                class="form-control"
+                name="arrival_date"
+                [(ngModel)]="flight.arrival_date"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-info">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
